@@ -239,3 +239,11 @@ Install tailwind
 ```
 npm install tailwindcss @tailwindcss/postcss postcss --force
 ```
+
+add in styles.scss
+
+```
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+```
