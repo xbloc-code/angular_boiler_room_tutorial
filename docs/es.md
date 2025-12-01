@@ -247,3 +247,10 @@ add in styles.scss
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
 ```
+
+
+make page 
+
+```
+ npx ng generate component pages/drawing --style=scss
+```
