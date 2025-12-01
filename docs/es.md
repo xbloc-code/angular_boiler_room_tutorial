@@ -237,19 +237,74 @@ Acceso:
 
 Install tailwind 
 ```
-npm install tailwindcss @tailwindcss/postcss postcss --force
+ npx npm install -D tailwindcss@3
 ```
 
 add in styles.scss
 
 ```
-@import "tailwindcss";
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
 
+
+```
+
+
+make tailwind.config.js
+
+```
+ /** @type {import('tailwindcss').Config} */
+ export default {
+  content: ["./src/**/*.{html,js,scss}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
 ```
 
 
 make page 
 
 ```
- npx ng generate component pages/drawing --style=scss
+npx ng generate component pages/drawing --style=scss
+npx ng generate component pages/welcome --style=scss
+```
+
+make route 
+
+```
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { Drawing } from './pages/drawing/drawing';
+import { Welcome } from './pages/welcome/welcome';
+
+const routes: Routes = [
+    {
+    path: '',
+    redirectTo: 'drawing',
+    pathMatch: 'full'
+  },
+  {
+    path: 'drawing',
+    component: Drawing,
+    data: { state: 'drawing' },
+    children: [
+      { path: 'welcome', component: Welcome, data: { state: 'welcome' } }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'drawing'
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
 ```
