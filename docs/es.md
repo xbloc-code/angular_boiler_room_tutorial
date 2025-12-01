@@ -235,3 +235,7 @@ Acceso:
 ---
 
 
+Install tailwind 
+```
+npm install tailwindcss @tailwindcss/postcss postcss --force
+```
